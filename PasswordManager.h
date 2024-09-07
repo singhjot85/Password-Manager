@@ -1,8 +1,9 @@
-#ifndef PassswordManager_H
-#define PasswordManger_H
-
 #include <bits/stdc++.h>
 using namespace std;
+
+#ifndef PASSWORDMANAGER_H
+#define PASSWORDMANAGER_H
+
 
 class PasswordManager{
 private:
@@ -18,4 +19,4 @@ public:
 };
 
 
-#endif // PasswordManager_H
+#endif // PASSWORDMANAGER_H
