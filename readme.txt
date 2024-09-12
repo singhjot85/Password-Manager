@@ -1,17 +1,5 @@
-output: PasswordDriver.o PasswordManager.o
-	g++ PasswordDriver.o PasswordManager.o -o output
-
-PasswordDriver.o: PasswordDriver.cpp
-	g++ -c PasswordDriver.cpp
-
-PasswordManager.o: PasswordManager.o EncryptionAlgorithm.o PasswordManager.h
-	g++ -c PasswordManager.cpp EncryptionAlgorithm.cpp 
-
-clean: 
-	rm *.o output
-
 This program uses a PasswordManager header file to declare all the required methods, the PasswordManager and EncryptionAlgorithm define methods declared in header file. 
-For in-depth detail of the program read PasswordManager.pdf attached.
+#For in-depth detail of the program read PasswordManager.pdf attached.
 
 How to Use:
 	To compile the program:
