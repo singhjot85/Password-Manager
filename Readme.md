@@ -3,13 +3,28 @@ This project is a PasswordManager utility that lets you store hashed sensitive d
 ## Basic Workflow:
 - User enters sensitive data.
 - Data goes through hashing layer, the application doesn't store raw data.
-- When the user re-requests the data, un-hash the data through same hash util.
+- When the user re-requests the data, the application hashes the input again
+  with the stored salt and compares the result.
 - Database layer to persist the hashes for user.
 
 ## Current Scope:
 - Application Layer: CLI only
-- Hashing Layer: Simple Hashing and un-hashing technique's
+- Hashing Layer: Salted one-way hashing with a versioned storage format
 - Database Layer: Relational Database (PostgreSQL)
+
+## Hashing Layer
+
+The hashing layer lives in `HashingLayer.h` and `HashingLayer.cpp`.
+
+- New values are stored as `pmv1$<salt>$<hash>`.
+- The salt is generated per value, so the same password should not produce the
+  same stored string twice.
+- Validation parses the stored hash, re-hashes the provided input with the
+  stored salt, and compares the computed hash with the stored hash.
+- Legacy XOR-encrypted values from the previous implementation are upgraded to
+  the new salted hash format after a successful validation.
+- The first implementation is dependency-free to keep the Docker image light.
+  It should be replaced with Argon2, bcrypt, or PBKDF2 before production use.
 
 ## Infrastructure
 

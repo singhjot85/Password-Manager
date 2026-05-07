@@ -15,8 +15,8 @@ CXXFLAGS ?= -Wall -Wextra -std=c++15
 APP_NAME := password-manager
 BUILD_DIR := bin
 TARGET := $(BUILD_DIR)/$(APP_NAME)
-SRCS := PasswordDriver.cpp PasswordManager.cpp EncryptionAlgorithm.cpp
-HEADERS := PasswordManager.h
+SRCS := PasswordDriver.cpp PasswordManager.cpp HashingLayer.cpp
+HEADERS := PasswordManager.h HashingLayer.h
 IMAGE_NAME ?= password-manager:local
 
 .PHONY: all build run clean docker-build compose-build compose-run compose-up compose-down compose-logs
