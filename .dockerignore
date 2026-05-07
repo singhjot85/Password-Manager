@@ -1,0 +1,9 @@
+.git
+.vscode
+.agents
+.codex
+bin
+*.o
+*.exe
+password.txt
+PasswordManager.pdf

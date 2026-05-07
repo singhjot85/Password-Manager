@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "PASSWORDMANAGER.h"
+#include "PasswordManager.h"
 using namespace std;
 
 void prompt() {
