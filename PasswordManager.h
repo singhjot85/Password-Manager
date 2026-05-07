@@ -1,21 +1,23 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 #ifndef PASSWORDMANAGER_H
 #define PASSWORDMANAGER_H
 
+#include "HashingLayer.h"
+
+#include <string>
 
 class PasswordManager{
 private:
-    string encryptedPass;
-    string encrypt(string s);
-    bool verifyPassword(string s);
+    std::string hashedPass;
+    HashingLayer hashingLayer;
+
+    bool verifyPassword(const std::string& s);
+    bool matchesLegacyEncryptedPass(const std::string& s);
 public:
     PasswordManager();
-    void setEncryptedPass(string s);
-    string getEncryptedPass();
-    bool setNewPass(string s);
-    bool validatePass(string s);
+    void setStoredHash(const std::string& s);
+    std::string getStoredHash();
+    bool setNewPass(const std::string& s);
+    bool validatePass(const std::string& s);
 };
 
 

@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: .
+    image: password-manager:local
+    stdin_open: true
+    tty: true
+    volumes:
+      - password-data:/data
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_DB: password_manager
+      POSTGRES_USER: password_manager
+      POSTGRES_PASSWORD: password_manager
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: password_manager
+      POSTGRES_USER: password_manager
+      POSTGRES_PASSWORD: password_manager
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U password_manager -d password_manager"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  password-data:
+  postgres-data:

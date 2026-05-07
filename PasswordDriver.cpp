@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "PASSWORDMANAGER.h"
+#include "PasswordManager.h"
 using namespace std;
 
 void prompt() {
@@ -26,9 +26,9 @@ int main() {
     ifstream file(fileName);
 
     if (file.good()) {
-        string encryptedPassword;
-        getline(file, encryptedPassword);
-        the_password_manager.setEncryptedPass(encryptedPassword);
+        string storedHash;
+        getline(file, storedHash);
+        the_password_manager.setStoredHash(storedHash);
         file.close();
     } else {
         string defaultPassword = "abc123!!!";
@@ -49,7 +49,7 @@ int main() {
 
                 if (the_password_manager.setNewPass(newPassword)) {
                     ofstream file(fileName);
-                    file << the_password_manager.getEncryptedPass();
+                    file << the_password_manager.getStoredHash();
                     file.close();
                     cout << "Password changed successfully\n";
                     break;
@@ -73,7 +73,7 @@ int main() {
         } 
         else if (input == 'C' || input == 'c') {
             ofstream file(fileName);
-            file << the_password_manager.getEncryptedPass();
+            file << the_password_manager.getStoredHash();
             file.close();
             cout << "Exiting and saving the password...\n";
             loop = false; 
